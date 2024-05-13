@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Navbar from "./components/navbar/Navbar";
+import NavbarTop from "./components/navbar/NavbarTop";
+import Header from "./components/Header";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Education from "./components/Education";
+import RegisterFreeContent from "./components/RegisterFreeContent";
+import Service from "./components/Service";
+import CurriculumSystems from "./components/CurriculumSystems";
+import TeachingExperience from "./components/TeachingExperience";
+import Companies from "./components/Companies";
+import Footer from "./components/Footer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 500,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div className="sticky left-0 right-0 bottom-0 top-0 z-50">
+          <NavbarTop />
+          <Navbar />
+        </div>
+        <Header />
+        <Education />
+        <RegisterFreeContent />
+        <Service />
+        <CurriculumSystems />
+        <TeachingExperience />
+        <Companies />
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
